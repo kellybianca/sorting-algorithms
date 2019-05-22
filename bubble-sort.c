@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void bubble(int array[], int size)
+void bubble(int *array, int size)
 {
   int i,j,aux;
   for (i = 0; i < size-1; i++)
@@ -17,7 +17,7 @@ void bubble(int array[], int size)
   }
 }
 
-void print_array(int array[], int size)
+void print_array(int *array, int size)
 {
     int i;
     for (i = 0; i < size; i++)
