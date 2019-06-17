@@ -1,23 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-void insertionSort(int array[], int size)
-{
-  int i,key,j;
-  for (i = 0; i < size; i++)
-  {
-    key = array[i];
-    j = i - 1;
-
-    while (j >= 0 && array[j] > key)
-    {
-      array[j + 1] = array[j];
-      j = j -1 ;
-    }
-    array[j + 1] = key;
-  }
-}
-
-void print_array(int *array, int size)
+void printArray(int array[], int size)
 {
   int i;
   for (i = 0; i < size; i++)
@@ -26,12 +10,36 @@ void print_array(int *array, int size)
   }
 }
 
+void insertionSort(int array[], int size)
+{
+  int anterior, atual, i;
+
+  for (i = 1; i < size; i++)
+  {
+    atual = array[i];
+    anterior = i - 1;
+
+    while (anterior >= 0 && array[anterior] > atual)
+    {
+      array[anterior + 1] = array[anterior];
+      anterior--;
+    }
+    array[anterior + 1] = atual;
+  }
+}
+
 int main()
 {
-   int array[] = { 12, 11, 13, 5, 6, 4 };
-   int n = sizeof(array) / sizeof(array[0]);
+  int size;
+  scanf("%d",&size);
+  int a[size], i;
 
-   insertionSort(array, n);
-   print_array(array, n);
-   return 0;
+  for (i = 0; i < size; i++)
+  {
+    scanf("%d",&a[i]);
+  }
+
+  insertionSort(a, size);
+  printArray(a, size);
 }
+
