@@ -1,37 +1,72 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-void bubble(int *array, int size)
+void swap(int *a, int *b)
 {
-  int i,j,aux;
-  for (i = 0; i < size-1; i++)
+  int aux = *a;
+  *a = *b;
+  *b = aux;
+}
+
+void printArray(int array[], int size)
+{
+  int i;
+  for (i = 0; i < size; i++)
   {
-    for (j = 0; j < size-1; j++)
+    printf("%d ",array[i]);
+  }
+}
+
+void ascendingOrder(int array[], int size)
+{
+  int i,j;
+
+  for (i = 0; i < size - 1; i++)
+  {
+    for (j = 0; j < size - 1; j++)
     {
-      if(array[j] > array[j+1])
+      if(array[j] > array[j + 1])
       {
-        aux = array[j];
-        array[j] = array[j+1];
-        array[j+1] = aux;
+        swap(&array[j], &array[j+1]);
       }
     }
   }
 }
 
-void print_array(int *array, int size)
+void descendingOrder(int array[], int size)
 {
-    int i;
-    for (i = 0; i < size; i++)
+  int i, j;
+
+  for (i = 0; i < size - 1; i++)
+  {
+    for (j = 0; j < size - 1; j++)
     {
-      printf("%d ",array[i]);
+      if(array[j+1] >= array[j])
+      {
+        swap(&array[j+1], &array[j]);
+      }
     }
+  }
 }
 
 int main()
 {
-  int array[] = {64, 34, 25, 12, 22, 11, 90};
-  int n = sizeof(array)/sizeof(array[0]);
-  bubble(array, n);
-  printf("Sorted array: \n");
-  print_array(array, n);
+  int n;
+  scanf("%d",&n);
+  int a[n],i,j, aux;
+
+  for (i = 0; i < n; i++)
+  {
+    scanf("%d",&a[i]);
+  }
+
+  printf("Ascending order\n");
+  ascendingOrder(a, n);
+  printArray(a, n);
+  
+  printf("\nDescending order\n");
+  descendingOrder(a, n);
+  printArray(a, n);
+
   return 0;
 }
